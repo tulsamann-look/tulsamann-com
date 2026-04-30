@@ -44,6 +44,21 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
     <!-- Favicon — placeholder, real asset lands during craft -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!--
+      Plausible Analytics — privacy-friendly, no cookie banner needed.
+      Site setup at https://plausible.io with domain tulsamann.com.
+      Defer the script for performance. Gated to production to avoid
+      polluting analytics during dev.
+    -->
+    {import.meta.env.PROD && (
+      <script
+        defer
+        is:inline
+        data-domain="tulsamann.com"
+        src="https://plausible.io/js/script.js"
+      />
+    )}
   </head>
   <body>
     <slot />

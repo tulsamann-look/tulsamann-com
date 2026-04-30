@@ -1,0 +1,98 @@
+---
+/**
+ * "What I'm building" section — operator competence + Claude implementation.
+ *
+ * Three blocks per BRIEF.md §5 row 4:
+ *   1. Internal AI agents Tulsa runs Look on
+ *   2. Claude Partner Network credential
+ *   3. What he builds for clients with Claude
+ *
+ * Establishes Cohort B (AI/Claude peers) credibility without pitching.
+ */
+
+import { BUILDING_BLOCKS } from "../config";
+---
+
+<section id="building" class="section surface-stone">
+  <div class="container-wide">
+    <header class="section-header">
+      <p class="eyebrow">Building</p>
+      <h2 class="headline">What I'm building (and how I help others build with Claude).</h2>
+      <p class="section-lede muted">
+        I run Look as an AI-first business. The same operator stack I use on Look is the one I
+        bring to client engagements.
+      </p>
+    </header>
+
+    <div class="building-grid">
+      {BUILDING_BLOCKS.map((block, idx) => (
+        <article class="building-block">
+          <p class="building-num">0{idx + 1}</p>
+          <h3 class="building-title">{block.title}</h3>
+          <p class="building-body">{block.body}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .section-header {
+    max-width: 56ch;
+    margin-bottom: 3rem;
+  }
+
+  .section-header .headline {
+    margin-top: 0.75rem;
+    max-width: 22ch;
+  }
+
+  .section-lede {
+    margin-top: 0.75rem;
+    font-size: var(--text-lg);
+    line-height: 1.55;
+  }
+
+  .building-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2rem;
+  }
+
+  .building-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .building-num {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--color-clay);
+    margin: 0;
+    letter-spacing: 0.05em;
+  }
+
+  .building-title {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -0.015em;
+    margin: 0;
+  }
+
+  .building-body {
+    font-size: var(--text-base);
+    line-height: 1.6;
+    color: var(--color-ink);
+    margin: 0;
+  }
+
+  @media (max-width: 880px) {
+    .building-grid {
+      grid-template-columns: 1fr;
+      gap: 2.25rem;
+    }
+  }
+</style>

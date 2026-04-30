@@ -1,0 +1,122 @@
+---
+/**
+ * Client Work section — proof of competence.
+ *
+ * Two case-study cards (CHL + EE). Reframed from "you should hire me" to
+ * "here's what I do for clients" per the strategic shift in BRIEF.md §2.
+ * No CTA at section bottom — the work speaks; conversion happens at the email
+ * capture, not here.
+ */
+
+import { FEATURED_CLIENTS } from "../config";
+---
+
+<section id="work" class="section">
+  <div class="container-wide">
+    <header class="section-header">
+      <p class="eyebrow">Work</p>
+      <h2 class="headline">What I do for clients.</h2>
+      <p class="section-lede muted">
+        Two recent examples. The work is real — same approach across both.
+      </p>
+    </header>
+
+    <div class="work-grid">
+      {FEATURED_CLIENTS.map((client) => (
+        <article class="card work-card">
+          <p class="work-receipt">{client.receipt}</p>
+          <h3 class="work-name">
+            {client.name}
+            <span class="work-name-short">— {client.short}</span>
+          </h3>
+          <p class="work-context">{client.context}</p>
+          <p class="work-role">
+            <span class="work-role-label">Role:</span> {client.role}
+          </p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .section-header {
+    max-width: 56ch;
+    margin-bottom: 3rem;
+  }
+
+  .section-header .headline {
+    margin-top: 0.75rem;
+  }
+
+  .section-lede {
+    margin-top: 0.75rem;
+    font-size: var(--text-lg);
+    line-height: 1.55;
+  }
+
+  .work-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+
+  .work-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .work-receipt {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: 600;
+    color: var(--color-clay);
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  .work-name {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    font-weight: 600;
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  .work-name-short {
+    color: var(--color-mute);
+    font-weight: 400;
+  }
+
+  .work-context {
+    font-size: var(--text-base);
+    line-height: 1.6;
+    color: var(--color-ink);
+    margin: 0;
+  }
+
+  .work-role {
+    font-size: var(--text-sm);
+    color: var(--color-mute);
+    margin: 0;
+    padding-top: 0.5rem;
+    border-top: 1px dashed var(--color-hairline);
+  }
+
+  .work-role-label {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-mute);
+    margin-right: 0.5rem;
+  }
+
+  @media (max-width: 760px) {
+    .work-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

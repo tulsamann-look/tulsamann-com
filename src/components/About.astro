@@ -1,0 +1,76 @@
+---
+/**
+ * About — short bio. First-person, plain English, specific.
+ *
+ * Two CTAs: LinkedIn (primary in this section) + email me (secondary).
+ * No photo here — photo is in hero only per BRIEF.md.
+ */
+
+import { LINKEDIN_URL, CONTACT_EMAIL } from "../config";
+---
+
+<section id="about" class="section">
+  <div class="container-wide">
+    <header class="section-header">
+      <p class="eyebrow">About</p>
+      <h2 class="headline">About me.</h2>
+    </header>
+
+    <div class="about-prose">
+      <p>
+        I'm Tulsa. I run <strong>Look Consulting</strong> out of Dubai. Look helps B2B founders
+        and operators cut their cost-per-lead in half through interactive lead magnets, paid
+        ads, and the AI plumbing behind both.
+      </p>
+      <p>
+        Before Look, I built and sold marketing infrastructure for a string of operators across
+        property, formation, and fintech. The pattern was always the same — generic playbooks
+        flat-out underperform, but the right interactive surface plus a clean attribution loop
+        moves real numbers. Look is that pattern, productized.
+      </p>
+      <p>
+        I'm also a member of the <strong>Claude Partner Network</strong>, building Look as an
+        AI Boutique on Anthropic's stack. Half my time goes into client work; the other half
+        goes into shipping the agents, dashboards, and automations that make Look itself run
+        like a 10-person team with one operator.
+      </p>
+      <p>
+        Two ways to get in touch. The fast way is
+        <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer">LinkedIn</a> — that's
+        where the long-form writing lives, and where I reply fastest. The direct way is
+        <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a> — goes straight to my inbox,
+        I usually reply within a day.
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .section-header {
+    max-width: 56ch;
+    margin-bottom: 2.5rem;
+  }
+
+  .section-header .headline {
+    margin-top: 0.75rem;
+  }
+
+  .about-prose {
+    max-width: 65ch;
+  }
+
+  .about-prose p {
+    font-size: var(--text-base);
+    line-height: 1.7;
+    margin: 0;
+    color: var(--color-ink);
+  }
+
+  .about-prose p + p {
+    margin-top: 1.25rem;
+  }
+
+  .about-prose strong {
+    font-weight: 500;
+  }
+</style>

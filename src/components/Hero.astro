@@ -1,0 +1,152 @@
+---
+/**
+ * Hero — primary conversion surface.
+ *
+ * Default variant (locked in BRIEF.md): statement + portrait + social-proof line + email capture.
+ * Live-mode iteration during craft will swap variants if a different lane wins.
+ *
+ * Photo placeholder: a tasteful framed block until Tulsa drops in the real image
+ * via /public/portrait.jpg. The aspect ratio is locked so layout doesn't shift on swap.
+ */
+
+import EmailForm from "./EmailForm.astro";
+import { LINKEDIN_URL } from "../config";
+---
+
+<section id="top" class="hero section">
+  <div class="container-wide hero-grid">
+    <div class="hero-content">
+      <p class="eyebrow hero-eyebrow">Lead generation + AI implementation for B2B</p>
+
+      <h1 class="display hero-headline">
+        I help B2B founders cut their cost-per-lead in half — and build with
+        <span class="hero-accent">Claude</span>
+        while doing it.
+      </h1>
+
+      <p class="hero-sub">
+        I run <strong>Look Consulting</strong> from Dubai. Recent receipts: 50% CPL drop at
+        Charterhouse Lombard, full GTM stack for Entity Engine across 11 jurisdictions, member
+        of the <strong>Claude Partner Network</strong>.
+      </p>
+
+      <div class="hero-form" id="hero-form">
+        <EmailForm size="lg" source="hero" cta="Send the playbook" />
+      </div>
+
+      <p class="hero-secondary muted">
+        Or
+        <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer">follow on LinkedIn</a>
+        — that's where the long-form thinking lives.
+      </p>
+    </div>
+
+    <aside class="hero-portrait" aria-label="Portrait of Tulsa Mann">
+      <div class="portrait-frame">
+        <span class="portrait-placeholder">Photo to come</span>
+        {/*
+          Replace with a real <img> tag once /public/portrait.jpg lands:
+          <img src="/portrait.jpg" alt="Tulsa Mann" width="600" height="720" />
+        */}
+      </div>
+    </aside>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding-block: clamp(3rem, 8vw, 6rem) clamp(4rem, 10vw, 7rem);
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+  }
+
+  .hero-eyebrow {
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-headline {
+    margin: 0;
+    max-width: 22ch;
+  }
+
+  .hero-accent {
+    color: var(--color-clay);
+    text-decoration: underline;
+    text-decoration-color: currentColor;
+    text-decoration-thickness: 3px;
+    text-underline-offset: 6px;
+  }
+
+  .hero-sub {
+    margin-top: 1.5rem;
+    font-size: var(--text-lg);
+    line-height: 1.55;
+    color: var(--color-mute);
+    max-width: 56ch;
+  }
+
+  .hero-sub strong {
+    color: var(--color-ink);
+    font-weight: 500;
+  }
+
+  .hero-form {
+    margin-top: 2rem;
+    max-width: 480px;
+  }
+
+  .hero-secondary {
+    margin-top: 1.25rem;
+    font-size: var(--text-sm);
+  }
+
+  .hero-portrait {
+    width: 100%;
+  }
+
+  .portrait-frame {
+    position: relative;
+    aspect-ratio: 5 / 6;
+    width: 100%;
+    background: var(--color-stone);
+    border: 1px solid var(--color-hairline);
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .portrait-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .portrait-placeholder {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  @media (max-width: 880px) {
+    .hero-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    /* On mobile/tablet, portrait moves below content — keeps headline above the fold. */
+    .hero-portrait {
+      max-width: 280px;
+      order: 1;
+    }
+  }
+</style>

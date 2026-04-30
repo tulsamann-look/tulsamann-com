@@ -1,0 +1,158 @@
+---
+/**
+ * Persistent nav. Sticky on desktop, collapses to hamburger on mobile.
+ *
+ * Anchors are in-page (single-page site), not routes.
+ * Primary CTA scrolls to the hero email capture.
+ */
+---
+
+<nav class="nav" aria-label="Primary">
+  <div class="container-wide nav-inner">
+    <a href="#top" class="nav-logo link-plain">Tulsa Mann</a>
+
+    <button
+      class="nav-toggle"
+      aria-label="Toggle navigation"
+      aria-expanded="false"
+      aria-controls="nav-links"
+    >
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+        <path
+          d="M3 6h14M3 10h14M3 14h14"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+        />
+      </svg>
+    </button>
+
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#work" class="link-plain">Work</a></li>
+      <li><a href="#building" class="link-plain">Building</a></li>
+      <li><a href="#writing" class="link-plain">Writing</a></li>
+      <li><a href="#about" class="link-plain">About</a></li>
+      <li>
+        <a href="#hero-form" class="btn btn-primary nav-cta">
+          Get the playbook
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<style>
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: oklch(98.5% 0.008 70 / 0.85);
+    backdrop-filter: saturate(140%) blur(8px);
+    border-bottom: 1px solid var(--color-hairline);
+  }
+
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: 1rem;
+  }
+
+  .nav-logo {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: var(--text-base);
+    letter-spacing: -0.01em;
+    color: var(--color-ink);
+  }
+
+  .nav-toggle {
+    display: none;
+    background: transparent;
+    border: 1px solid var(--color-hairline);
+    border-radius: 6px;
+    padding: 0.5rem;
+    cursor: pointer;
+    color: var(--color-ink);
+  }
+
+  .nav-toggle:hover {
+    border-color: var(--color-mute);
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1.75rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-links li {
+    list-style: none;
+  }
+
+  .nav-cta {
+    padding: 0.5rem 1rem;
+    font-size: var(--text-sm);
+  }
+
+  @media (max-width: 760px) {
+    .nav-toggle {
+      display: inline-flex;
+    }
+
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: 100%;
+      right: 1rem;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      padding: 0.75rem;
+      background: var(--color-canvas);
+      border: 1px solid var(--color-hairline);
+      border-radius: 8px;
+      min-width: 200px;
+    }
+
+    .nav-links li {
+      padding: 0.5rem 0.75rem;
+    }
+
+    .nav-links li:last-child {
+      padding: 0.5rem 0 0;
+      border-top: 1px solid var(--color-hairline);
+      margin-top: 0.5rem;
+    }
+
+    .nav-links.open {
+      display: flex;
+    }
+
+    .nav-cta {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>(".nav-toggle");
+  const links = document.querySelector<HTMLElement>(".nav-links");
+
+  toggle?.addEventListener("click", () => {
+    const isOpen = links?.classList.toggle("open");
+    toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+  });
+
+  // Close mobile nav when an in-page anchor is clicked.
+  links?.querySelectorAll<HTMLAnchorElement>('a[href^="#"]').forEach((link) => {
+    link.addEventListener("click", () => {
+      links.classList.remove("open");
+      toggle?.setAttribute("aria-expanded", "false");
+    });
+  });
+</script>

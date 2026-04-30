@@ -12,12 +12,15 @@ The single page at tulsamann.com is the durable digital home base for Tulsa Mann
 
 ## 2. Primary User Action
 
-**The visitor decides to engage within 60 seconds.** Engagement is route-specific:
+**REVISED 2026-04-30 — strategic recalibration.** The site is **not** a Look sales funnel. It is a **credibility surface that funnels visitors into Tulsa's broader funnel** (email list OR LinkedIn follow OR LinkedIn post engagement). In Tulsa's words: *"The idea of the website is obviously just for people to figure out, 'Oh yeah, this is actually a real guy. He's actually legit. He's actually got some competence.' After that, get them somehow in my funnel."*
 
-- **Cohort A (Look prospects):** clicks the persistent "Book a 30-min call" CTA OR submits the email capture for the AI implementation playbook OR scrolls into the Look offer block and self-qualifies.
-- **Cohort B (AI / Claude peers):** reads the AI section, scans recent writing, subscribes to the email list for future writing, OR closes the tab having added Tulsa to their mental-watchlist.
+**The visitor leaves having taken one of three actions, in priority order:**
 
-Both cohorts are served by the same scroll, but their CTAs differ. The page must not force Cohort B into the Look funnel or it loses them.
+1. **Subscribed to the email list** (gets "The B2B Lead Gen Playbook"). Primary conversion.
+2. **Followed Tulsa on LinkedIn** (or read a LinkedIn long-form piece and engaged with it). Secondary conversion — it loops them into a different durable channel.
+3. **Sent a direct email** (mailto, low-friction reply path for high-intent visitors). No Calendly at launch — booking happens after a conversation.
+
+The Look offer is intentionally NOT pitched on the page. The £8,500 Formation Lead Engine, the Halve-It-Or-Free guarantee, the qualifying funnel — all of that lives behind email + LinkedIn relationships, not in front of cold visitors. The site builds *trust*; the funnel converts *that trust* into engagements over time.
 
 ## 3. Design Direction
 
@@ -69,17 +72,18 @@ Both cohorts are served by the same scroll, but their CTAs differ. The page must
 - No multi-column content. The reading path is strictly top-to-bottom. (Exception: project list cards in Client Work and AI sections may use a 2-column grid on desktop for the receipt blocks, collapsing to 1 column on mobile.)
 - Heading-to-body proportion: every section opens with a strong **headline** (per DESIGN.md hierarchy), not a display. Display type is reserved for the hero only.
 
-**Section order, top to bottom (revised after Round 2 to mirror creator-builder funnel architecture):**
+**Section order, top to bottom (REVISED 2026-04-30 — credibility surface, NOT sales funnel):**
 
-1. **Persistent nav** — Logo (just "Tulsa Mann" set) + minimal in-page anchors (Work · Look · Building · Writing · About) + persistent **Book a call** CTA (clay button). Sticky on desktop, collapses to hamburger on mobile.
-2. **Hero — value prop + portrait + social proof + immediate email capture** — Justin Welsh / Greg Isenberg pattern. Above the fold: (a) 1-2 line declarative value proposition in display type, (b) a real portrait photo, (c) **inline social-proof line** ("trusted by [N] B2B founders" / "100+ leads/month for clients" / a press / partner credential like Claude Partner Network), (d) **primary email-capture form right here** with a named free lead magnet (TBD — see Open Questions §10). One accent moment: clay underline on the operative verb of the value prop. Secondary CTA next to email capture: "Book a 30-min call". This hero converts on first contact.
-3. **Client work — what I do for B2B founders** — Section headline. Two case-study cards: CHL (50% CPL drop, ~100 leads/mo) and EE (multi-jurisdiction CSP, ongoing). Each card shows: client name, the receipt (number + 1-line context), the role Tulsa played. Section close-CTA: "Book a 30-min call about lead gen →".
-4. **Look offer block — qualifying surface** — Look's actual offer (Formation Lead Engine or equivalent) with: the headline outcome, the price anchor, a "This is for you if…" qualifying paragraph, and a "This is NOT for you if…" disqualifying paragraph (Hormozi-style — high-value prospects respect a clear filter). Single CTA: "Book a 30-min discovery call".
-5. **What I'm building — how I operate, and how I help with AI** — Section headline. Three blocks: (a) **Internal AI agents and automations** — short paragraph + a list of named systems Tulsa runs Look on (CEO agent, founding engineer agent, DMW system, expense bot, dashboard). The "practice what you preach" surface. (b) **Claude Partner Network** — short paragraph on CPN credential, Anthropic-recognized, AI Boutique positioning. (c) **What I help businesses build with Claude** — 1-2 anonymized examples of Claude implementation engagements (or framed as the offer Look provides for AI implementation, when it exists).
-6. **Writing — recent thinking** — Section headline. 3 most recent posts (title + date + 1-line excerpt). **Each "Read more" links out to LinkedIn** (locked in Round 2 — drives LinkedIn follow + adds CRM signal). Section bottom: a **second email capture** repeating the lead magnet: "Get the next piece in your inbox + the free [magnet name]". Email capture is the spine of the conversion funnel — multiple touchpoints, same offer.
-7. **About — who I am** — Section headline. 3-4 short paragraphs: Dubai-based founder, Look Consulting, builder background, what got me here. No photo here (photo lives in hero per Round 2 decision). One link out: LinkedIn.
-8. **Contact / Final CTA** — Two-up: "Book a 30-min call" (clay button, primary) and "Email me" (text link, secondary). Both honest about what happens next ("This goes to my inbox. I usually reply within 24 hours."). No contact form — direct email is the reply path for low-intent inquiries.
-9. **Footer** — Minimal: copyright, last-updated date, a few social links (LinkedIn, X, GitHub if applicable), maybe a tiny "colophon" link describing the build (Astro + impeccable + deployed on Vercel — geek signal for Cohort B without being precious). **Third email capture** in footer (smallest of the three, single field, no preamble) — Justin Welsh's triple-capture pattern.
+The Look offer block has been dropped. The persistent nav CTA shifts from "Book a call" to "Get the playbook" (email capture). Calendly is out at launch. Mailto is the only direct-reply path. 8 sections + nav + footer.
+
+1. **Persistent nav** — Logo (just "Tulsa Mann" set) + minimal in-page anchors (Work · Building · Writing · About) + persistent **"Get the playbook"** CTA (clay button) that scrolls to the hero email capture. Sticky on desktop, collapses to hamburger on mobile.
+2. **Hero — value prop + portrait + social proof + email capture** — Justin Welsh pattern. Above the fold: (a) 1-2 line declarative value proposition in display type ("I run Look Consulting. I build with Claude." or similar), (b) a real portrait photo, (c) **inline social-proof line** (numbers from CHL/EE + Claude Partner Network credential), (d) **primary email-capture form right here** for "The B2B Lead Gen Playbook." Secondary action: "Follow on LinkedIn →". The hero is the primary conversion surface.
+3. **Client work — proof of competence** — Section headline. Reframed from "you should hire me" to "here's what I do for clients" (the strategic shift). Two case-study cards: CHL (50% CPL drop, ~100 leads/mo) and EE (multi-jurisdiction CSP, ongoing). Each card shows: client name, the receipt (number + 1-line context), the role Tulsa played. **No CTA at the bottom of this section** — the work speaks. Conversion happens at the email capture, not here.
+4. **What I'm building — how I operate, and how I help with AI** — Section headline. Three blocks: (a) **Internal AI agents and automations** — short paragraph + a list of named systems Tulsa runs Look on (CEO agent, founding engineer agent, DMW system, expense bot, dashboard). The "practice what you preach" surface. (b) **Claude Partner Network** — short paragraph on CPN credential, Anthropic-recognized. (c) **What I help businesses build with Claude** — 1-2 anonymized examples or framed as a Look service line. The whole section establishes builder competence.
+5. **Writing — recent thinking** — Section headline. 3 most recent posts (title + date + 1-line excerpt). **Each "Read more" links out to LinkedIn long-form articles** (drives LinkedIn follow + CRM signal — Tulsa's primary content distribution platform). Section bottom: a **second email capture** repeating the lead magnet pitch: "Get the next piece in your inbox + the free B2B Lead Gen Playbook."
+6. **About — who I am** — Section headline. 3-4 short paragraphs: Dubai-based founder, Look Consulting, builder background, what got me here. No photo here (photo lives in hero). Two links out: **LinkedIn** (primary CTA in this section — "Follow on LinkedIn") and an **Email me** mailto link (secondary, low-friction reply path).
+7. **Final CTA — three doors** — Section headline like "Three ways to keep going." Three equal-weight options, presented as a small grid: **(1) Subscribe** (third email capture, smallest), **(2) Follow on LinkedIn**, **(3) Email me** (mailto). All three are honest about what happens after. No "Book a call" — that comes after the relationship starts via email or LinkedIn.
+8. **Footer** — Minimal: copyright, last-updated date, social links (LinkedIn primary, X, GitHub if applicable), tiny "colophon" link describing the build (Astro + impeccable + deployed on Vercel — geek signal for Cohort B without being precious). No email capture in footer (we already have three above).
 
 ## 6. Key States
 
@@ -155,11 +159,11 @@ Resolved during craft, not blocking confirmation of this brief:
 6. **Photo asset** — Tulsa needs to provide one usable photo. Anti-rule: no stock, no AI-rendered. Required before craft can ship the hero. Alternatively, hero ships with statement-only fallback if photo isn't ready, photo gets dropped in later via live-mode iteration.
 7. **Look offer copy** — does the offer block use the actual Formation Lead Engine offer (£8,500 / 60-day / Halve-It-Or-Free) or a softer, audience-broader version? If actual, headline price needs to be public-OK.
 8. **Writing destination — LOCKED 2026-04-30.** "Read more" on writing excerpts links **out to LinkedIn long-form articles**. Strategic rationale: drives LinkedIn follow, builds CRM signal, lets the network effect compound. Implies Tulsa needs a LinkedIn long-form publishing cadence. Open follow-up: which LinkedIn URLs (specific posts vs profile-articles tab) and how the excerpts are kept in sync (manual update of latest 3 vs RSS-driven).
-9. **Email capture backend** — Justin Welsh / Nick Saraev use ConvertKit (now "Kit"). Greg uses Beehiiv. Recommended for Tulsa: **Kit (ConvertKit)** — best-in-class for creator-builder lead-magnet flows, native PDF delivery, segmentable tags. Alternative: Beehiiv if newsletter-first. Lock during stack scaffold (Phase 5).
-10. **Book-a-call backend** — Calendly, Cal.com, Savvycal, or built-in. Probably Calendly given existing Look ops. Lock during stack scaffold.
+9. **Email capture backend — LOCKED 2026-04-30.** n8n workflow → Airtable. Custom flow built via n8n MCP. Front-end form POSTs to an n8n webhook; n8n inserts the row into an Airtable "tulsamann-com leads" table, then sends "The B2B Lead Gen Playbook" PDF via email. Cheaper than Kit at low volume, fits Tulsa's existing automation stack. Webhook URL TBD when the n8n workflow is built.
+10. **Book-a-call backend — LOCKED 2026-04-30.** No Calendly at launch. CTAs use mailto link. Booking flow happens after the conversation starts via email or LinkedIn DM.
 11. **Domain registrar** — open from the original plan. Need DNS access for Phase 8.
-12. **Analytics** — Plausible / Fathom / Vercel Analytics / none. For a creator-builder funnel, recommend **Plausible** (privacy-friendly, lightweight, GDPR-clean) or **Vercel Analytics** if already on Vercel. Lock during stack scaffold.
-13. **Stack confirmation** — Astro 5 (recommended) or alternative. Lock at Phase 5 start.
+12. **Analytics — LOCKED 2026-04-30.** Plausible. Domain set to `tulsamann.com`. Site setup at plausible.io must happen before deploy (or analytics quietly 404s — non-blocking). Script is gated to production builds only via `import.meta.env.PROD`.
+13. **Stack confirmation — LOCKED 2026-04-30.** Astro 5.18 + Tailwind v4.2 + MDX. Scaffold deployed at `tulsamann-com.vercel.app`.
 
 ---
 

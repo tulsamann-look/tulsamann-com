@@ -1,0 +1,170 @@
+---
+/**
+ * EmailForm — primary conversion mechanic.
+ *
+ * Used in 3 places per BRIEF.md:
+ *   1. Hero (size: lg)
+ *   2. Writing section (size: md)
+ *   3. Final CTA (size: sm)
+ *
+ * POSTs to an n8n webhook (URL TBD). Until the n8n workflow is built,
+ * the form action is a placeholder; submission shows an inline thanks
+ * state but does not actually send. Wire the real webhook URL in
+ * src/config.ts once the n8n workflow exists.
+ */
+
+import { N8N_LEAD_WEBHOOK } from "../config";
+
+interface Props {
+  size?: "sm" | "md" | "lg";
+  source: string; // tracked source — e.g. "hero", "writing", "final-cta"
+  cta?: string; // submit button text
+  placeholder?: string; // input placeholder
+  hideMagnetCopy?: boolean; // suppress the "+ The B2B Lead Gen Playbook" line
+}
+
+const {
+  size = "md",
+  source,
+  cta = "Send the playbook",
+  placeholder = "you@company.com",
+  hideMagnetCopy = false,
+} = Astro.props;
+
+const formId = `email-form-${source}`;
+---
+
+<form
+  id={formId}
+  class={`email-form email-form-${size}`}
+  data-source={source}
+  data-action={N8N_LEAD_WEBHOOK}
+>
+  <div class="email-form-fields">
+    <input
+      type="email"
+      name="email"
+      class="field"
+      placeholder={placeholder}
+      required
+      autocomplete="email"
+      aria-label="Your email"
+    />
+    <button type="submit" class="btn btn-primary">{cta}</button>
+  </div>
+  {!hideMagnetCopy && (
+    <p class="email-form-magnet">
+      Get <strong>The B2B Lead Gen Playbook</strong> + the next piece of writing in your inbox. Unsubscribe in one click.
+    </p>
+  )}
+  <p class="email-form-success" aria-live="polite" hidden>
+    Confirmed. The playbook is on its way.
+  </p>
+  <p class="email-form-error" aria-live="polite" hidden>
+    Couldn't submit. Try again, or just email me directly.
+  </p>
+</form>
+
+<style>
+  .email-form {
+    width: 100%;
+  }
+
+  .email-form-fields {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .email-form-fields .field {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .email-form-sm .email-form-fields {
+    flex-direction: column;
+  }
+
+  .email-form-sm .field,
+  .email-form-sm .btn {
+    width: 100%;
+  }
+
+  .email-form-magnet {
+    margin-top: 0.75rem;
+    font-size: var(--text-sm);
+    color: var(--color-mute);
+    line-height: 1.5;
+  }
+
+  .email-form-magnet strong {
+    color: var(--color-ink);
+    font-weight: 500;
+  }
+
+  .email-form-success,
+  .email-form-error {
+    margin-top: 0.75rem;
+    font-size: var(--text-sm);
+    color: var(--color-clay-deep);
+    line-height: 1.5;
+  }
+
+  @media (max-width: 540px) {
+    .email-form-fields {
+      flex-direction: column;
+    }
+    .email-form-fields .btn {
+      width: 100%;
+    }
+  }
+</style>
+
+<script>
+  // Progressive enhancement — submit via fetch, show inline state.
+  document.querySelectorAll<HTMLFormElement>(".email-form").forEach((form) => {
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const submitBtn = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+      const successEl = form.querySelector<HTMLElement>(".email-form-success");
+      const errorEl = form.querySelector<HTMLElement>(".email-form-error");
+      const emailInput = form.querySelector<HTMLInputElement>('input[name="email"]');
+
+      if (!submitBtn || !emailInput) return;
+
+      const email = emailInput.value.trim();
+      const source = form.dataset.source ?? "unknown";
+      const action = form.dataset.action ?? "";
+
+      const originalText = submitBtn.textContent ?? "";
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Sending…";
+      if (errorEl) errorEl.hidden = true;
+
+      try {
+        if (action && action.startsWith("https://")) {
+          const res = await fetch(action, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, source, page: window.location.href }),
+          });
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        } else {
+          // No webhook configured yet — log locally so we can verify the form is wired.
+          // Replace this with real webhook once n8n workflow exists.
+          console.info("[email-form] no webhook configured, would submit:", { email, source });
+          await new Promise((r) => setTimeout(r, 400));
+        }
+
+        if (emailInput) emailInput.value = "";
+        if (successEl) successEl.hidden = false;
+        submitBtn.textContent = "Sent ✓";
+      } catch (err) {
+        console.error("[email-form] submit failed", err);
+        if (errorEl) errorEl.hidden = false;
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+      }
+    });
+  });
+</script>
