@@ -1,0 +1,67 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+/*
+ * tulsamann.com — home (one-pager).
+ *
+ * This is a SCAFFOLD STUB. Real content + composition lands during $impeccable craft.
+ * The 8 sections from BRIEF.md are stubbed below as placeholders so we can verify
+ * the dev server runs and the design tokens render.
+ *
+ * Section order from BRIEF.md §5:
+ * 1. Persistent nav
+ * 2. Hero (value prop + portrait + social proof + email capture)
+ * 3. Client work (CHL + EE)
+ * 4. Look offer block (qualifying surface)
+ * 5. What I'm building (Internal AI agents + CPN + Claude implementation)
+ * 6. Writing (3 latest posts → LinkedIn)
+ * 7. About
+ * 8. Contact / final CTA
+ * 9. Footer
+ */
+---
+
+<BaseLayout
+  title="Tulsa Mann — Lead gen + AI implementation for B2B"
+  description="I run Look Consulting. I build with Claude. The B2B Lead Gen Playbook is free in your inbox."
+>
+  <main class="mx-auto" style="max-width: var(--content-width); padding: 4rem 1.5rem;">
+    <section class="mb-16">
+      <p style="font-size: var(--text-sm); color: var(--color-mute); text-transform: uppercase; letter-spacing: 0.08em;">
+        Scaffold v0 · 2026-04-30
+      </p>
+      <h1 style="font-size: var(--text-3xl); line-height: 1.1; margin-top: 1rem;">
+        tulsamann.com
+      </h1>
+      <p class="prose-body" style="margin-top: 1rem;">
+        Stack scaffolded. Astro 5 + Tailwind v4 + MDX + Vercel. Design tokens stubbed
+        from <code style="font-family: var(--font-mono); background: var(--color-stone); padding: 2px 6px; border-radius: 2px;">DESIGN.md</code>.
+        Real composition + content land during <code style="font-family: var(--font-mono); background: var(--color-stone); padding: 2px 6px; border-radius: 2px;">$impeccable craft</code>
+        + live-mode iteration.
+      </p>
+      <p class="prose-body" style="margin-top: 1rem;">
+        Single accent moment, used once on this page —
+        <a href="#" style="color: var(--color-clay); text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 4px;">
+          Operator Clay
+        </a>.
+      </p>
+    </section>
+
+    <section style="border-top: 1px solid var(--color-hairline); padding-top: 3rem;">
+      <p style="font-size: var(--text-sm); color: var(--color-mute);">
+        Sections to be crafted (from BRIEF.md §5):
+      </p>
+      <ol style="margin-top: 1rem; padding-left: 1.5rem; line-height: 1.8;">
+        <li>Persistent nav with Book-a-call CTA</li>
+        <li>Hero: value prop + portrait + social proof + email capture (Justin Welsh pattern)</li>
+        <li>Client work: CHL (50% CPL drop) + EE</li>
+        <li>Look offer block with qualifying / disqualifying copy</li>
+        <li>What I'm building: Internal AI agents + CPN credential + Claude implementation</li>
+        <li>Writing: 3 latest posts → LinkedIn long-form</li>
+        <li>About</li>
+        <li>Contact / final CTA</li>
+        <li>Footer with third email capture</li>
+      </ol>
+    </section>
+  </main>
+</BaseLayout>
