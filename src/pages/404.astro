@@ -1,0 +1,83 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { LINKEDIN_URL, CONTACT_EMAIL } from "../config";
+---
+
+<BaseLayout
+  title="Not found — tulsamann.com"
+  description="That page isn't here. Back to home, or get in touch."
+>
+  <main class="container error-main">
+    <p class="eyebrow">404 — not here</p>
+    <h1 class="display error-title">That page isn't here.</h1>
+
+    <p class="error-body">
+      Either I haven't written it yet, or you found a stale link. Three things you can do:
+    </p>
+
+    <ul class="error-actions">
+      <li>
+        <a href="/">← Back to home</a>
+      </li>
+      <li>
+        <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer">
+          Find me on LinkedIn
+        </a>
+      </li>
+      <li>
+        <a href={`mailto:${CONTACT_EMAIL}`}>
+          Email me — {CONTACT_EMAIL}
+        </a>
+      </li>
+    </ul>
+  </main>
+</BaseLayout>
+
+<style>
+  .error-main {
+    padding-block: clamp(4rem, 12vw, 8rem);
+  }
+
+  .error-title {
+    margin: 1rem 0 1.5rem 0;
+    max-width: 16ch;
+  }
+
+  .error-body {
+    font-size: var(--text-lg);
+    line-height: 1.55;
+    color: var(--color-mute);
+    max-width: 56ch;
+    margin: 0 0 2rem 0;
+  }
+
+  .error-actions {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    max-width: 56ch;
+  }
+
+  .error-actions li {
+    list-style: none;
+    padding-block: 0.5rem;
+    border-bottom: 1px solid var(--color-hairline);
+  }
+
+  .error-actions li:last-child {
+    border-bottom: 0;
+  }
+
+  .error-actions a {
+    text-decoration: none;
+    font-size: var(--text-base);
+    color: var(--color-ink);
+  }
+
+  .error-actions a:hover {
+    color: var(--color-clay-deep);
+  }
+</style>
