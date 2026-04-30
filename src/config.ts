@@ -20,14 +20,25 @@ export const GITHUB_URL = "https://github.com/tulsamann-look";
  * n8n webhook URL for email capture.
  *
  * Forms POST `{ email, source, page }` here. n8n inserts a row into the
- * Airtable "tulsamann-com leads" table and dispatches the lead-magnet PDF.
+ * Airtable "tulsamann-com leads" table (base appPJdT3w7bGQgjF2,
+ * table tbl9S17NJNPV2yAoh).
  *
- * EMPTY STRING = no real backend; form falls back to a local console.info
- * stub so the UX flow can be verified without sending data anywhere.
+ * Workflow built and waiting in draft at:
+ *   https://lookconsulting.app.n8n.cloud/workflow/gurqigyWjUhZEZW5
  *
- * Set to the real webhook once the n8n workflow is built.
+ * Before this URL goes live, Tulsa must:
+ *   1. Bind the Airtable PAT credential to the "Insert Lead into Airtable"
+ *      node (HTTP Header Auth, name "Authorization", value "Bearer pat...").
+ *   2. Activate / publish the workflow (the public webhook only listens
+ *      when the workflow is active).
+ *
+ * While the workflow is in draft, the URL below 404s. The form's catch
+ * branch handles that — visitors see the error state until activation.
+ * If you want a softer fallback during the activation window, set this
+ * back to "" and the form will fall back to console.info instead.
  */
-export const N8N_LEAD_WEBHOOK = "";
+export const N8N_LEAD_WEBHOOK =
+  "https://lookconsulting.app.n8n.cloud/webhook/tulsamann-com-leads";
 
 /** The named lead magnet — used as the value-exchange in every email capture. */
 export const LEAD_MAGNET = {
