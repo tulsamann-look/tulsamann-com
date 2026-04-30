@@ -45,3 +45,4 @@ coverage/
 
 # Impeccable runtime artifacts (live mode iterations land here)
 .impeccable/
+.vercel
