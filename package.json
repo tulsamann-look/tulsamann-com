@@ -20,10 +20,17 @@
     "@fontsource-variable/geist-mono": "^5.2.7",
     "@tailwindcss/vite": "^4.0.0",
     "astro": "^5.1.0",
+    "sharp": "^0.34.5",
     "tailwindcss": "^4.0.0",
     "typescript": "^5.7.0"
   },
   "engines": {
     "node": ">=20.3.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "sharp",
+      "esbuild"
+    ]
   }
 }
