@@ -23,7 +23,7 @@
   --color-canvas: oklch(98.5% 0.008 70); /* Warm Off-White */
   --color-stone: oklch(96% 0.01 70); /* Soft Stone — subtle section bg */
   --color-ink: oklch(20% 0.015 60); /* Operator Ink — body text */
-  --color-mute: oklch(50% 0.012 60); /* Quiet Mute — secondary text */
+  --color-mute: oklch(46% 0.012 60); /* Quiet Mute — secondary text. WCAG AA on canvas. */
   --color-hairline: oklch(90% 0.01 70); /* Hairline borders */
 
   /* Operator Clay — accent. Differentiated from Anthropic's clay by ~10% lightness. */
