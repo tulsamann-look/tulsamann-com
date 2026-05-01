@@ -1,19 +1,38 @@
 # tulsamann.com
 
-Personal website. Drives lead gen for Look Consulting, hosts long-form writing, and serves as the public archive of Tulsa Mann's projects.
+Personal website at [tulsamann.com](https://www.tulsamann.com). Operator credibility surface for Tulsa Mann. Funnels visitors into the email list (lead magnet: *The B2B Lead Gen Playbook*), LinkedIn, and direct email reply. No on-site sales pitch by design.
 
 ## Stack
-TBD at CHECKPOINT 2 (after `/impeccable shape`). Current default: Astro 5 + Tailwind v4 + MDX, deployed to Vercel.
+- **Astro 5** (static, content collections wired)
+- **Tailwind v4** with custom OKLCH design tokens (Operator Clay accent, warm-neutral canvas)
+- **Geist Variable** + **Geist Mono** typography
+- **MDX** (wired but unused at v0)
+- **Vercel** hosting
+- **Plausible** analytics (production-only)
 
-## Build process
-Driven by [pbakaus/impeccable](https://github.com/pbakaus/impeccable):
-1. `/impeccable teach` — writes PRODUCT.md + DESIGN.md.
-2. `/impeccable shape` — locks IA, sections, content blocks.
-3. `/impeccable craft` — builds.
-4. `/impeccable critique` + `/impeccable polish` + `/impeccable audit` — polish loop.
-5. Deploy to Vercel.
+Brand built with [pbakaus/impeccable](https://github.com/pbakaus/impeccable). Strategic context in `PRODUCT.md`; visual system in `DESIGN.md`; section-by-section brief in `BRIEF.md`.
 
-Vault task: [`look/tasks/tulsamann-com-website/`](https://github.com/tulsamann-look) (private vault; ask Tulsa).
+## Lead magnet PDF
+"The B2B Lead Gen Playbook" lives at [`/b2b-lead-gen-playbook.pdf`](https://www.tulsamann.com/b2b-lead-gen-playbook.pdf) (5 pages, site-branded).
 
-## Status
-Scaffolded 2026-04-30. PRODUCT.md and DESIGN.md to follow.
+- **Source markdown:** `src/content/playbook.md`
+- **Render endpoint:** `src/pages/playbook.astro` (noindex, sitemap-excluded)
+- **Layout:** `src/layouts/PlaybookLayout.astro` (print-optimized CSS reusing global tokens)
+- **Build script:** `scripts/build-playbook-pdf.mjs` (Playwright + headless Chromium)
+- **Rebuild:** `pnpm build:playbook` regenerates `public/b2b-lead-gen-playbook.pdf` from the markdown source. Commit the regenerated PDF.
+
+The same pipeline can render any future PDF: add a markdown source, a render page, and run the script with the new path.
+
+## Email capture
+Form posts to an n8n webhook (`gurqigyWjUhZEZW5`) which inserts a row into Airtable and sends a Resend confirmation email containing the live PDF link. URLs and lead magnet metadata live in `src/config.ts`.
+
+## Vault task
+[`look/tasks/tulsamann-com-website/`](https://github.com/tulsamann-look) (private vault — ask Tulsa).
+
+## Local dev
+```sh
+pnpm install
+pnpm dev          # site at localhost:4321
+pnpm build        # static build to dist/
+pnpm build:playbook   # regenerate the lead-magnet PDF
+```
