@@ -1,0 +1,273 @@
+---
+/**
+ * PlaybookLayout — print-optimized shell for the lead magnet PDF render.
+ *
+ * Imports global.css so the playbook inherits the site's OKLCH design tokens
+ * (Operator Clay accent, Geist Variable type, warm-neutral canvas) — single
+ * source of truth, no drift between site and PDF.
+ *
+ * Used at /playbook (noindex). Rendered to PDF via scripts/build-playbook-pdf.mjs.
+ *
+ * Print rules:
+ *   - Letter 8.5x11" page size.
+ *   - Margins controlled by Playwright (page.pdf({margin}) in the build script),
+ *     not @page CSS. Internal padding is zero.
+ *   - Page breaks: cover sets page-break-after, each main section sets
+ *     page-break-before via .pb-page-break, tables avoid splitting.
+ *   - Body type 11pt on print (vs 18px web floor — readers hold paper closer).
+ */
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description: string;
+}
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="robots" content="noindex,nofollow" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+  </head>
+  <body class="playbook-body">
+    <article class="playbook">
+      <slot />
+    </article>
+
+    <style is:global>
+      /* ---------- screen view (when sharing the URL) ---------- */
+
+      @media screen {
+        .playbook-body {
+          background: var(--color-canvas);
+          padding: clamp(2rem, 5vw, 4rem) 1rem;
+        }
+        .playbook {
+          max-width: var(--content-width);
+          margin: 0 auto;
+          background: var(--color-canvas);
+          padding: clamp(2rem, 5vw, 3rem);
+          border: 1px solid var(--color-hairline);
+          border-radius: 4px;
+        }
+      }
+
+      /* ---------- shared (screen + print) typography ---------- */
+
+      .playbook {
+        color: var(--color-ink);
+        font-family: var(--font-body);
+        font-size: 11pt;
+        line-height: 1.55;
+      }
+
+      .playbook h1,
+      .playbook h2,
+      .playbook h3 {
+        font-family: var(--font-display);
+        color: var(--color-ink);
+        font-weight: 600;
+        letter-spacing: -0.01em;
+      }
+
+      .playbook h1 {
+        font-size: 28pt;
+        line-height: 1.1;
+        margin: 0 0 1rem;
+        max-width: 22ch;
+      }
+
+      .playbook h2 {
+        font-size: 18pt;
+        line-height: 1.2;
+        margin: 2.4rem 0 0.6rem;
+        padding-top: 0.5rem;
+        border-top: 1px solid var(--color-hairline);
+      }
+
+      .playbook h3 {
+        font-size: 13pt;
+        line-height: 1.25;
+        margin: 1.6rem 0 0.5rem;
+        color: var(--color-clay-deep);
+      }
+
+      .playbook p {
+        margin: 0 0 0.85rem;
+        max-width: 68ch;
+      }
+
+      .playbook strong {
+        font-weight: 600;
+        color: var(--color-ink);
+      }
+
+      .playbook a {
+        color: var(--color-clay-deep);
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 2px;
+      }
+
+      .playbook ol,
+      .playbook ul {
+        margin: 0 0 1rem;
+        padding-left: 1.4rem;
+      }
+
+      .playbook li {
+        margin: 0 0 0.4rem;
+      }
+
+      .playbook hr {
+        border: 0;
+        border-top: 1px solid var(--color-hairline);
+        margin: 1.5rem 0;
+      }
+
+      /* table — used in CHL receipt */
+      .playbook table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1rem 0 1.4rem;
+        font-size: 10.5pt;
+      }
+      .playbook th,
+      .playbook td {
+        text-align: left;
+        padding: 0.5rem 0.75rem;
+        border-bottom: 1px solid var(--color-hairline);
+      }
+      .playbook th {
+        font-weight: 600;
+        color: var(--color-mute);
+        font-size: 9.5pt;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        border-bottom: 1px solid var(--color-ink);
+      }
+      .playbook tr:last-child td {
+        border-bottom: 0;
+      }
+
+      /* cover treatment — first h1 of the doc */
+      .playbook > h1:first-child {
+        margin-top: 0;
+        padding-top: 0;
+        font-size: 32pt;
+        line-height: 1.05;
+        max-width: 18ch;
+      }
+      /* the byline-ish paragraph that follows the cover h1 (subtitle + author) */
+      .playbook > h1:first-child + p {
+        font-size: 13pt;
+        line-height: 1.4;
+        max-width: 52ch;
+        color: var(--color-mute);
+        margin-bottom: 1.5rem;
+      }
+      .playbook > h1:first-child + p + p {
+        font-size: 11pt;
+        color: var(--color-ink);
+        margin-bottom: 0;
+      }
+
+      /* the cover divider (first <hr>) — Operator Clay accent rule */
+      .playbook > hr:first-of-type {
+        border-top: 3px solid var(--color-clay);
+        max-width: 80px;
+        margin: 1.2rem 0 2rem;
+      }
+
+      /* ---------- print rules ---------- */
+
+      @media print {
+        @page {
+          size: Letter;
+          margin: 0;
+        }
+
+        html,
+        body {
+          background: var(--color-canvas);
+          margin: 0;
+          padding: 0;
+        }
+
+        .playbook-body {
+          padding: 0;
+          background: var(--color-canvas);
+        }
+
+        .playbook {
+          max-width: none;
+          padding: 0;
+          border: 0;
+          border-radius: 0;
+          background: var(--color-canvas);
+          /* the playwright build script applies physical page margins,
+             so internal padding here stays zero. */
+        }
+
+        /* hide every page break the cover otherwise creates */
+        .playbook h2 {
+          margin-top: 1.6rem;
+          padding-top: 0.5rem;
+        }
+
+        /* explicit break boundary AFTER the cover, before "What this is".
+           Done via the cover hr (the playbook source has exactly one <hr>,
+           right after the byline). Everything else flows. */
+        .playbook > hr:first-of-type {
+          page-break-after: always;
+          break-after: page;
+        }
+
+        /* No forced breaks beyond the cover — the natural flow + table
+           page-break-inside: avoid keeps the CHL table together, and the
+           hairline border on each h2 visually marks section transitions
+           even when two sections share a page. Forced breaks at internal
+           h2s caused orphan pages (a single paragraph stranded by itself). */
+
+        /* avoid orphan headings — keep with following content */
+        .playbook h2,
+        .playbook h3 {
+          page-break-after: avoid;
+          break-after: avoid-page;
+        }
+
+        /* avoid splitting tables and short blocks */
+        .playbook table,
+        .playbook tr,
+        .playbook li {
+          page-break-inside: avoid;
+          break-inside: avoid;
+        }
+
+        /* widow / orphan control */
+        .playbook p {
+          orphans: 3;
+          widows: 3;
+        }
+
+        /* keep links readable on print, but drop the underline ink mass */
+        .playbook a {
+          color: var(--color-clay-deep);
+          text-decoration: none;
+        }
+
+        /* hide skip link if the global stylesheet emits one */
+        .skip-link {
+          display: none;
+        }
+      }
+    </style>
+  </body>
+</html>
