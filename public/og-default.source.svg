@@ -25,5 +25,5 @@
   <!-- Footer line -->
   <line x1="80" y1="540" x2="1120" y2="540" stroke="oklch(90% 0.01 70)" stroke-width="1"/>
 
-  <text class="body mute" x="80" y="580" font-size="20">Look Consulting · Claude Partner Network member · tulsamann.com</text>
+  <text class="body mute" x="80" y="580" font-size="20">Look Consulting · tulsamann.com</text>
 </svg>

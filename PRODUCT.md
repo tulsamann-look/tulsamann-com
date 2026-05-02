@@ -12,7 +12,7 @@ Two primary cohorts, weighted roughly 50 / 50.
 B2B founders and ops leaders who land here because Tulsa cold-emailed them or because someone referred him. They already know about Look (or are about to find out) and they're searching his name to verify he's real before they reply. Their context is a 30-second background-check tab, opened between meetings. They want signal: is this someone I'd hire to run lead gen for me? They're not coming to read essays. They're coming to confirm Tulsa exists, builds things, and knows what he's doing — then either book a call, save the tab for later, or close it.
 
 **Cohort B — AI / Claude-curious peers, operators, and content followers.**
-People who found Tulsa through his AI content, his Claude Partner Network positioning, or someone in the Claude implementation space pointing at him. They include other consultants, AI-curious founders, agency operators, and lurkers from his writing. Their context is "I want to read what this person thinks about Claude and AI in business." They're here for the thinking, the work-in-public, the receipts. Some will become Cohort A over time — they buy after they trust the thinking — but their first visit is for substance, not pitch.
+People who found Tulsa through his AI content, his Claude implementation work, or someone in the Claude implementation space pointing at him. They include other consultants, AI-curious founders, agency operators, and lurkers from his writing. Their context is "I want to read what this person thinks about Claude and AI in business." They're here for the thinking, the work-in-public, the receipts. Some will become Cohort A over time — they buy after they trust the thinking — but their first visit is for substance, not pitch.
 
 The site must serve both without compromising either. A site that funnels Cohort B into "book a Look call" alienates them. A site that buries the Look CTA loses Cohort A.
 
@@ -20,7 +20,7 @@ The site must serve both without compromising either. A site that funnels Cohort
 
 A founder-operator brand site that runs two surfaces in parallel: a **business surface** that converts inbound interest in Tulsa-the-operator into Look Consulting engagements, and a **thinking surface** that compounds Tulsa-the-builder's reputation in the Claude implementation and AI-for-business space. The two surfaces share infrastructure (one site, one navigation, one personality) but route to different outcomes.
 
-Success looks like: a visitor leaves in 60 seconds knowing what Tulsa does and having taken a clear next step — either booking a call (Cohort A), reading or subscribing to a piece of writing (Cohort B), or both. The site is the durable home base that cold email, LinkedIn, podcast appearances, and Claude Partner Network activity all point at. It is not a portfolio in the showcase sense; it is a reputation layer that compounds.
+Success looks like: a visitor leaves in 60 seconds knowing what Tulsa does and having taken a clear next step — either booking a call (Cohort A), reading or subscribing to a piece of writing (Cohort B), or both. The site is the durable home base that cold email, LinkedIn, and podcast appearances all point at. It is not a portfolio in the showcase sense; it is a reputation layer that compounds.
 
 ## Brand Personality
 

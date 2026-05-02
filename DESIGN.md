@@ -35,7 +35,7 @@ The palette is monochromatic by commitment. One accent hue family, expressed in 
 
 - **Operator Clay** [`oklch` value to be resolved during implementation] — A warm clay orange in the Claude / Anthropic family, but not the same value (we differentiate one notch warmer or one notch deeper to avoid reading as Anthropic's brand). Used for: the single accent moment per screen — link underlines, the primary CTA, signature section dividers, the active-nav indicator. Rare by design.
 
-The Operator Clay anchor was chosen over electric blue (Tulsa's prior personal accent) because (a) clay reads "calm" where electric blue reads "tech-electric", (b) it visually aligns with the Claude Partner Network positioning without imitating Anthropic, and (c) warm hues read as builder-human where cool blues read as SaaS-corporate.
+The Operator Clay anchor was chosen over electric blue (Tulsa's prior personal accent) because (a) clay reads "calm" where electric blue reads "tech-electric", (b) it visually aligns with Tulsa's Claude implementation work without imitating Anthropic, and (c) warm hues read as builder-human where cool blues read as SaaS-corporate.
 
 > **Implementation note for the craft pass:** during the build, generate side-by-side comps in clay AND electric blue at the same lightness. Lock the choice from real screens, not from this seed.
 

@@ -109,7 +109,7 @@ The next step is not booking a call. Reply to this email and tell me what you ar
 
 ## About
 
-I am Tulsa Mann. I run Look Consulting from Dubai. I am a member of the Claude Partner Network and Look itself runs on Claude (a CEO agent, a founding engineer agent, a daily mission control dashboard). The same approach I bring to client engagements is the one I run my own business on. The playbook above is what I do. The Claude work is how I do it.
+I am Tulsa Mann. I run Look Consulting from Dubai. Look itself runs on Claude (a CEO agent, a founding engineer agent, a daily mission control dashboard). The same approach I bring to client engagements is the one I run my own business on. The playbook above is what I do. The Claude work is how I do it.
 
 Find more on LinkedIn at linkedin.com/in/tulsamann, or reply to this email directly.
 

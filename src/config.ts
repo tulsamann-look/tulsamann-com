@@ -82,11 +82,6 @@ export const BUILDING_BLOCKS = [
       "CEO agent, founding engineer agent, expense bot, mission-control dashboard, DMW (Do My Work) execution system — all in production, all running every day. The same operator approach I bring to client engagements.",
   },
   {
-    title: "Claude Partner Network",
-    body:
-      "Member of Anthropic's Claude Partner Network. Building Look as an AI Boutique on Anthropic's stack — the implementation work I do for Look is the implementation work I do for clients.",
-  },
-  {
     title: "I help businesses build with Claude",
     body:
       "From interactive lead magnets to custom AI agents, I help B2B businesses ship Claude-powered tools that move actual numbers. Same approach, different stack — the underlying methodology is the same as the lead-gen work.",
