@@ -59,6 +59,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         src="https://plausible.io/js/script.js"
       />
     )}
+
+    <slot name="head-extra" />
   </head>
   <body>
     <a href="#top" class="skip-link">Skip to content</a>
