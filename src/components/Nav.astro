@@ -2,14 +2,17 @@
 /**
  * Persistent nav. Sticky on desktop, collapses to hamburger on mobile.
  *
- * Anchors are in-page (single-page site), not routes.
- * Primary CTA scrolls to the hero email capture.
+ * Anchor links work on the homepage one-pager. On other routes (post
+ * pages, /writing index) they prefix with "/" so they navigate back to
+ * the homepage at the right section. Writing now points at /writing
+ * directly since it is a real route.
  */
+const isHome = Astro.url.pathname === "/";
 ---
 
 <nav class="nav" aria-label="Primary">
   <div class="container-wide nav-inner">
-    <a href="#top" class="nav-logo link-plain">Tulsa Mann</a>
+    <a href={isHome ? "#top" : "/"} class="nav-logo link-plain">Tulsa Mann</a>
 
     <button
       class="nav-toggle"
@@ -28,12 +31,12 @@
     </button>
 
     <ul class="nav-links" id="nav-links">
-      <li><a href="#work" class="link-plain">Work</a></li>
-      <li><a href="#building" class="link-plain">Building</a></li>
-      <li><a href="#writing" class="link-plain">Writing</a></li>
-      <li><a href="#about" class="link-plain">About</a></li>
+      <li><a href={isHome ? "#work" : "/#work"} class="link-plain">Work</a></li>
+      <li><a href={isHome ? "#building" : "/#building"} class="link-plain">Building</a></li>
+      <li><a href="/writing" class="link-plain">Writing</a></li>
+      <li><a href={isHome ? "#about" : "/#about"} class="link-plain">About</a></li>
       <li>
-        <a href="#hero-form" class="btn btn-primary nav-cta">
+        <a href={isHome ? "#hero-form" : "/#hero-form"} class="btn btn-primary nav-cta">
           Get the playbook
         </a>
       </li>
