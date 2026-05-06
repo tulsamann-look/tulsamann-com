@@ -1,0 +1,116 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Nav from "../../components/Nav.astro";
+import Footer from "../../components/Footer.astro";
+import EmailForm from "../../components/EmailForm.astro";
+import WritingHero from "../../components/writing/WritingHero.astro";
+import PostCard from "../../components/writing/PostCard.astro";
+import { getAllPublished, getCornerstone } from "../../utils/cluster";
+import { SITE } from "../../config";
+
+const allPosts = await getAllPublished();
+const cornerstone = await getCornerstone();
+const otherPosts = allPosts.filter((p) => !p.data.cornerstone);
+
+const title = `Writing | ${SITE.name}`;
+const description = "Lead generation and AI for B2B founders, in plain English.";
+---
+
+<BaseLayout title={title} description={description}>
+  <Nav />
+
+  <main class="writing-index">
+    <WritingHero />
+
+    {
+      cornerstone && (
+        <section class="cornerstone-section">
+          <PostCard post={cornerstone} variant="featured" />
+        </section>
+      )
+    }
+
+    {
+      otherPosts.length > 0 ? (
+        <section class="post-list-section">
+          <h2 class="list-headline">{cornerstone ? "More writing" : "All posts"}</h2>
+          <ul class="post-list">
+            {otherPosts.map((post) => (
+              <li>
+                <PostCard post={post} />
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : (
+        !cornerstone && (
+          <section class="empty-state">
+            <p>The first post lands soon.</p>
+          </section>
+        )
+      )
+    }
+
+    <section class="bottom-capture">
+      <h2 class="capture-headline">Get the playbook.</h2>
+      <p class="capture-sub">
+        The B2B Lead Gen Playbook. Free. One email at a time when something new ships.
+      </p>
+      <EmailForm source="writing-index" />
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .writing-index {
+    max-width: 56rem;
+    margin: 0 auto;
+    padding: 0 1.5rem 4rem 1.5rem;
+  }
+  .cornerstone-section {
+    margin-bottom: 3rem;
+  }
+  .post-list-section {
+    margin-bottom: 4rem;
+  }
+  .list-headline {
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-mute);
+    margin: 0 0 1.5rem 0;
+  }
+  .post-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 1.5rem;
+  }
+  .empty-state {
+    padding: 4rem 0;
+    text-align: center;
+    color: var(--color-mute);
+  }
+  .bottom-capture {
+    text-align: center;
+    padding: 3rem 0;
+    border-top: 1px solid var(--color-hairline);
+  }
+  .capture-headline {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin: 0 0 0.75rem 0;
+    color: var(--color-ink);
+  }
+  .capture-sub {
+    font-size: 1rem;
+    color: var(--color-mute);
+    max-width: 32rem;
+    margin: 0 auto 1.5rem auto;
+    line-height: 1.5;
+  }
+</style>
