@@ -1,0 +1,72 @@
+---
+import EmailForm from "../EmailForm.astro";
+import RelatedPosts from "./RelatedPosts.astro";
+import { LINKEDIN_URL } from "../../config";
+import type { WritingEntry } from "../../utils/cluster";
+
+interface Props {
+  entry: WritingEntry;
+}
+const { entry } = Astro.props;
+---
+
+<footer class="post-footer">
+  <section class="author-bio">
+    <div class="bio-text">
+      <p class="bio-name">Tulsa Mann</p>
+      <p class="bio-line">
+        Lead generation and AI implementation for B2B founders. Operator at <a href="/">Look Consulting</a>.
+        Connect on <a href={LINKEDIN_URL} rel="noopener">LinkedIn</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="footer-capture">
+    <h3 class="footer-headline">Liked this? More like it.</h3>
+    <p class="footer-sub">
+      Get The B2B Lead Gen Playbook and an occasional note when something new ships.
+    </p>
+    <EmailForm source="writing-footer" />
+  </section>
+
+  <RelatedPosts entry={entry} />
+</footer>
+
+<style>
+  .post-footer {
+    margin-top: 4rem;
+  }
+  .author-bio {
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--color-hairline);
+    border-bottom: 1px solid var(--color-hairline);
+  }
+  .bio-name {
+    font-weight: 600;
+    margin: 0 0 0.25rem 0;
+    color: var(--color-ink);
+  }
+  .bio-line {
+    margin: 0;
+    color: var(--color-mute);
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+  .footer-capture {
+    margin: 3rem 0;
+    text-align: center;
+  }
+  .footer-headline {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem 0;
+    color: var(--color-ink);
+  }
+  .footer-sub {
+    font-size: 1rem;
+    color: var(--color-mute);
+    margin: 0 auto 1.5rem auto;
+    max-width: 32rem;
+    line-height: 1.5;
+  }
+</style>
