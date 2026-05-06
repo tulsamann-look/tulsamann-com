@@ -51,7 +51,9 @@ export const LEAD_MAGNET = {
 export const SITE = {
   name: "Tulsa Mann",
   tagline: "Lead generation + AI implementation for B2B",
-  url: "https://tulsamann.com",
+  // Canonical host is www. Apex still points at GoDaddy parking until
+  // the A record is fixed. See astro.config.mjs for the full note.
+  url: "https://www.tulsamann.com",
 };
 
 /** Featured client work — used in the Work section. */
