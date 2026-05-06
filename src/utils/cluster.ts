@@ -3,9 +3,10 @@ import { getCollection, type CollectionEntry } from "astro:content";
 export type WritingEntry = CollectionEntry<"writing">;
 
 const isPublished = (entry: WritingEntry): boolean => {
-  if (entry.data.draft) return false;
-  if (import.meta.env.PROD && entry.data.draft === false) return true;
-  return import.meta.env.DEV ? true : !entry.data.draft;
+  // In dev mode, show all posts (including drafts) for preview.
+  // In production builds, exclude drafts.
+  if (import.meta.env.DEV) return true;
+  return !entry.data.draft;
 };
 
 export async function getAllPublished(): Promise<WritingEntry[]> {
