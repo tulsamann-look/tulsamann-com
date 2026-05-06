@@ -7,8 +7,9 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "pnpm audit:cluster && astro check && astro build && pnpm build:og:all",
+    "build": "pnpm audit:cluster && astro check && astro build",
     "build:fast": "astro check && astro build",
+    "build:full": "pnpm audit:cluster && astro check && astro build && pnpm build:og:all",
     "preview": "astro preview",
     "astro": "astro",
     "check": "astro check",
