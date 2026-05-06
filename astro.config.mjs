@@ -8,9 +8,12 @@ export default defineConfig({
   site: "https://tulsamann.com",
   integrations: [
     mdx(),
-    // Exclude /playbook (the lead-magnet render endpoint) from the sitemap.
-    // It's noindex/nofollow at the page level; this keeps it out of the public site map too.
-    sitemap({ filter: (page) => !page.endsWith("/playbook/") }),
+    // Exclude /playbook and /og-template/* from the sitemap.
+    // Both are noindex/nofollow render endpoints; this keeps them out of the public site map too.
+    sitemap({
+      filter: (page) =>
+        !page.endsWith("/playbook/") && !page.includes("/og-template/"),
+    }),
   ],
   vite: {
     plugins: [tailwindcss()],
