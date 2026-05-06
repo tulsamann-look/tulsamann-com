@@ -1,0 +1,80 @@
+---
+import { getSiblingsOf, type WritingEntry } from "../../utils/cluster";
+
+interface Props {
+  entry: WritingEntry;
+  limit?: number;
+}
+const { entry, limit = 3 } = Astro.props;
+const siblings = await getSiblingsOf(entry, limit);
+---
+
+{
+  siblings.length > 0 && (
+    <section class="related-posts">
+      <h2 class="related-headline">Related posts</h2>
+      <ul class="related-list">
+        {siblings.map((s) => (
+          <li class="related-item">
+            <a href={`/writing/${s.slug}`}>
+              <h3 class="related-title">{s.data.title}</h3>
+              <p class="related-desc">{s.data.description}</p>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )
+}
+
+<style>
+  .related-posts {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-hairline);
+  }
+  .related-headline {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin: 0 0 1.5rem 0;
+    color: var(--color-mute);
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+  .related-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 1.5rem;
+  }
+  @media (min-width: 720px) {
+    .related-list {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  .related-item a {
+    display: block;
+    padding: 1rem;
+    border: 1px solid var(--color-hairline);
+    border-radius: 4px;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 150ms ease;
+  }
+  .related-item a:hover {
+    border-color: var(--color-clay);
+  }
+  .related-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem 0;
+    color: var(--color-ink);
+  }
+  .related-desc {
+    font-size: 0.875rem;
+    color: var(--color-mute);
+    margin: 0;
+    line-height: 1.5;
+  }
+</style>
