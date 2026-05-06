@@ -1,0 +1,40 @@
+---
+import EmailForm from "../EmailForm.astro";
+
+interface Props {
+  headline?: string;
+  sub?: string;
+}
+const {
+  headline = "Get the playbook.",
+  sub = "The B2B Lead Gen Playbook. The methodology behind Charterhouse Lombard's 50% lower cost-per-lead, written down. Free.",
+} = Astro.props;
+---
+
+<aside class="inline-capture">
+  <h3 class="headline">{headline}</h3>
+  <p class="sub">{sub}</p>
+  <EmailForm source="writing-inline" />
+</aside>
+
+<style>
+  .inline-capture {
+    margin: 3rem 0;
+    padding: 2rem;
+    background: var(--color-stone);
+    border-left: 3px solid var(--color-clay);
+    border-radius: 4px;
+  }
+  .headline {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem 0;
+    color: var(--color-ink);
+  }
+  .sub {
+    font-size: 0.95rem;
+    color: var(--color-mute);
+    margin: 0 0 1.25rem 0;
+    line-height: 1.5;
+  }
+</style>
