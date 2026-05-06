@@ -2,13 +2,15 @@
 /**
  * Writing section — recent thinking.
  *
- * Three latest posts. "Read more" links out to LinkedIn long-form (per
- * BRIEF.md §5 row 5 — drives LinkedIn follow + CRM signal). Section
- * bottom has the second of three email captures.
+ * Pulls the 3 most recent posts from the writing content collection.
+ * Posts link internally to /writing/[slug]. View-all link goes to /writing.
+ * Empty state shown when no posts have been published yet.
  */
 
 import EmailForm from "./EmailForm.astro";
-import { RECENT_POSTS } from "../config";
+import { getRecentPostsForHome } from "../config";
+
+const recentPosts = await getRecentPostsForHome();
 ---
 
 <section id="writing" class="section">
@@ -18,26 +20,34 @@ import { RECENT_POSTS } from "../config";
       <h2 class="headline">What I'm writing about.</h2>
       <p class="section-lede muted">
         Long-form pieces on B2B lead generation, AI implementation, and what it actually looks
-        like to run a small business on Claude. Published on LinkedIn, mirrored here.
+        like to run a small business on Claude.
       </p>
     </header>
 
-    <ol class="posts">
-      {RECENT_POSTS.map((post) => (
-        <li class="post">
-          <p class="post-date">{post.date}</p>
-          <h3 class="post-title">
-            <a href={post.url} target="_blank" rel="noopener noreferrer" class="post-link">
-              {post.title}
-            </a>
-          </h3>
-          <p class="post-excerpt">{post.excerpt}</p>
-          <a href={post.url} target="_blank" rel="noopener noreferrer" class="post-readmore">
-            Read on LinkedIn →
-          </a>
-        </li>
-      ))}
-    </ol>
+    {recentPosts.length > 0 ? (
+      <>
+        <ol class="posts">
+          {recentPosts.map((post) => (
+            <li class="post">
+              <p class="post-date">{post.date}</p>
+              <h3 class="post-title">
+                <a href={post.href} class="post-link">
+                  {post.title}
+                </a>
+              </h3>
+              <p class="post-excerpt">{post.excerpt}</p>
+              <a href={post.href} class="post-readmore">
+                Read more →
+              </a>
+            </li>
+          ))}
+        </ol>
+
+        <a href="/writing" class="view-all">View all writing →</a>
+      </>
+    ) : (
+      <p class="coming-soon muted">The first post lands soon.</p>
+    )}
 
     <div class="writing-cta">
       <h3 class="writing-cta-headline">
@@ -135,6 +145,26 @@ import { RECENT_POSTS } from "../config";
     color: var(--color-clay-deep);
     text-decoration: underline;
     text-decoration-color: currentColor;
+  }
+
+  .view-all {
+    display: inline-block;
+    margin-top: 1.5rem;
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--color-clay);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+
+  .view-all:hover {
+    color: var(--color-clay-deep);
+    text-decoration: underline;
+  }
+
+  .coming-soon {
+    padding: 2rem 0;
+    font-size: var(--text-base);
   }
 
   .writing-cta {

@@ -89,29 +89,22 @@ export const BUILDING_BLOCKS = [
 ] as const;
 
 /**
- * Recent writing — placeholders until LinkedIn long-form is published.
- * Each "Read more" links out to LinkedIn (per BRIEF.md §5 row 5).
+ * Recent posts for the homepage Writing section.
+ *
+ * Pulled from the writing content collection at build time. Returns up
+ * to 3 most recent published posts. Empty array if none exist yet.
  */
-export const RECENT_POSTS = [
-  {
-    title: "Why I cut my own marketing budget by half — and what happened next",
-    date: "Coming soon",
-    excerpt:
-      "On running an AI-first B2B services business when the cheapest test is the one you run on yourself.",
-    url: LINKEDIN_URL,
-  },
-  {
-    title: "The lead magnet rule nobody talks about: it has to be the product",
-    date: "Coming soon",
-    excerpt:
-      "Why interactive lead magnets convert at 8–10% and PDF lead magnets convert at 1–2%, in three case studies.",
-    url: LINKEDIN_URL,
-  },
-  {
-    title: "Anthropic's Claude as the operating system of a small business",
-    date: "Coming soon",
-    excerpt:
-      "What it actually looks like to run customer-facing operations, internal R&D, and pipeline management on a single LLM stack.",
-    url: LINKEDIN_URL,
-  },
-] as const;
+export async function getRecentPostsForHome() {
+  const { getAllPublished } = await import("./utils/cluster");
+  const posts = await getAllPublished();
+  return posts.slice(0, 3).map((p) => ({
+    title: p.data.title,
+    date: p.data.publishDate.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    }),
+    excerpt: p.data.description,
+    href: `/writing/${p.slug}`,
+  }));
+}
